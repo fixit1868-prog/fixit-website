@@ -1,0 +1,49 @@
+{
+  "name": "Fix It - Tech Repair & Web Design",
+  "short_name": "Fix It",
+  "description": "Fast, reliable computer repair, phone repair, website maintenance & design in Tobago",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#00c6ff",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%230d1b2a' width='192' height='192'/><circle cx='96' cy='96' r='55' fill='none' stroke='%2300c6ff' stroke-width='2'/><path d='M71 84 Q76 77 86 74 Q96 72 104 77 L111 84' fill='none' stroke='%2300c6ff' stroke-width='3.5' stroke-linecap='round'/><rect x='108' y='80' width='18' height='20' rx='3' fill='none' stroke='%2300c6ff' stroke-width='3'/><circle cx='68' cy='80' r='2.5' fill='%2300c6ff'/><circle cx='128' cy='104' r='2.5' fill='%2300c6ff'/><circle cx='81' cy='121' r='2.5' fill='%2300c6ff'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%230d1b2a' width='512' height='512'/><circle cx='256' cy='256' r='140' fill='none' stroke='%2300c6ff' stroke-width='5'/><path d='M180 214 Q190 190 220 180 Q250 170 280 185 L310 214' fill='none' stroke='%2300c6ff' stroke-width='9' stroke-linecap='round'/><rect x='290' y='200' width='50' height='55' rx='8' fill='none' stroke='%2300c6ff' stroke-width='9'/><circle cx='170' cy='200' r='7' fill='%2300c6ff'/><circle cx='350' cy='280' r='7' fill='%2300c6ff'/><circle cx='220' cy='330' r='7' fill='%2300c6ff'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect fill='%231a1a4e' width='540' height='720'/><text x='270' y='100' font-family='Arial' font-size='48' fill='white' text-anchor='middle' font-weight='bold'>Fix It</text><text x='270' y='160' font-family='Arial' font-size='20' fill='%2300c6ff' text-anchor='middle'>Tech Solutions</text><rect x='30' y='220' width='480' height='400' fill='%230d1b2a' rx='16'/><text x='270' y='320' font-family='Arial' font-size='24' fill='%2300c6ff' text-anchor='middle'>Fast Repairs</text><text x='270' y='360' font-family='Arial' font-size='18' fill='white' text-anchor='middle'>Computer • Phone • Web Design</text><text x='270' y='540' font-family='Arial' font-size='20' fill='%2300c6ff' text-anchor='middle'>📱 (868) 745-1561</text></svg>",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["business", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Call Fix It",
+      "short_name": "Call",
+      "description": "Call Fix It directly",
+      "url": "tel:+18687451561",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='45' fill='%2300c6ff'/><path d='M48 30 C35 30 25 40 25 53 C25 66 35 76 48 76 C61 76 71 66 71 53 C71 40 61 30 48 30' fill='%230d1b2a'/></svg>", "sizes": "96x96", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Chat on WhatsApp",
+      "url": "https://wa.me/18687451561",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='45' fill='%2325d366'/><text x='48' y='60' font-size='48' text-anchor='middle' fill='white'>💬</text></svg>", "sizes": "96x96", "type": "image/svg+xml" }]
+    }
+  ]
+}

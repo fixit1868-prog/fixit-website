@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fix It — Tech Repair & Web Services</title>
+<meta name="description" content="Fast, reliable computer repair, phone repair, website maintenance & design in Tobago. AI-powered solutions.">
+<meta name="theme-color" content="#00c6ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fix It">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%230d1b2a' width='180' height='180'/><circle cx='90' cy='90' r='50' fill='none' stroke='%2300c6ff' stroke-width='2'/><path d='M65 76 Q70 69 80 66 Q90 64 98 69 L105 76' fill='none' stroke='%2300c6ff' stroke-width='3.5' stroke-linecap='round'/><rect x='102' y='72' width='16' height='18' rx='3' fill='none' stroke='%2300c6ff' stroke-width='3'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2d45;
+    --gold: #00c6ff;
+    --gold-light: #72e5ff;
+    --cream: #eaf4fb;
+    --text: #1a1a2e;
+    --muted: #5a6a80;
+    --white: #ffffff;
+    --radius: 4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13, 27, 42, 0.97);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    border-bottom: 1px solid rgba(0,198,255,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    border-radius: var(--radius);
+    font-weight: 500 !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a1a4e 50%, #0d2a3a 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 50%; height: 100%;
+    background: radial-gradient(ellipse at top right, rgba(0,198,255,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 440px;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    padding: 14px 32px;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Hero visual — circuit-board decoration */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .circuit-wrap {
+    width: 360px; height: 360px;
+    position: relative;
+  }
+
+  .circuit-ring {
+    position: absolute;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .circuit-ring:nth-child(1) { width: 100%; height: 100%; }
+  .circuit-ring:nth-child(2) { width: 72%; height: 72%; border-color: rgba(201,168,76,0.35); }
+  .circuit-ring:nth-child(3) { width: 44%; height: 44%; border-color: rgba(201,168,76,0.5); }
+
+  .circuit-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px; height: 90px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .circuit-center svg { width: 40px; height: 40px; }
+
+  .orbit-dot {
+    position: absolute; top: 50%; left: 50%;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin: -5px;
+  }
+
+  .orbit-dot:nth-child(4) { transform: rotate(0deg) translateX(180px); }
+  .orbit-dot:nth-child(5) { transform: rotate(120deg) translateX(180px); background: rgba(201,168,76,0.5); }
+  .orbit-dot:nth-child(6) { transform: rotate(240deg) translateX(180px); background: rgba(201,168,76,0.3); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 28px 5%;
+  }
+
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 100px 5%;
+    background: var(--cream);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .services-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 48px 36px;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover .service-icon { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .service-card:hover .service-title { color: var(--white); }
+  .service-card:hover .service-desc { color: rgba(255,255,255,0.6); }
+  .service-card:hover .service-list li { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.1); }
+  .service-card:hover .service-list li::before { color: var(--gold); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: rgba(0,198,255,0.1);
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    color: #00c6ff;
+    font-size: 24px;
+    transition: all 0.2s;
+  }
+
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    transition: color 0.2s;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    transition: color 0.2s;
+  }
+
+  .service-list {
+    list-style: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-top: 20px;
+  }
+
+  .service-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding-left: 16px;
+    position: relative;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .service-list li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-size: 12px;
+    transition: color 0.2s;
+  }
+
+  /* PROCESS */
+  .process {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a1a4e 100%);
+    padding: 100px 5%;
+  }
+
+  .process .section-title { color: var(--white); }
+  .process .section-sub { color: rgba(255,255,255,0.5); }
+
+  .process-steps {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 28px; right: -20px;
+    width: 40px; height: 1px;
+    background: rgba(201,168,76,0.3);
+  }
+
+  .step-num {
+    width: 56px; height: 56px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+  }
+
+  .step-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial-section {
+    padding: 100px 5%;
+    background: var(--cream);
+  }
+
+  .testimonials-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius);
+    padding: 32px;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  .testimonial-role {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* PRICING */
+  .pricing-section {
+    padding: 100px 5%;
+    background: var(--cream);
+  }
+
+  .pricing-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .pricing-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--border-radius-lg, 12px);
+    padding: 32px;
+    position: relative;
+  }
+
+  .pricing-card-featured {
+    border: 2px solid #00c6ff;
+  }
+
+  .pricing-featured-badge {
+    position: absolute; top: -14px; left: 50%;
+    transform: translateX(-50%);
+    background: #00c6ff;
+    color: #0d1b2a;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .pricing-card-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .pricing-icon { font-size: 24px; }
+
+  .pricing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .pricing-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .pricing-list li {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-size: 13px;
+    color: var(--text);
+    gap: 8px;
+  }
+
+  .price-tag {
+    text-align: right;
+    font-weight: 500;
+    color: var(--navy);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .price-tag em {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .pricing-note {
+    font-size: 12px;
+    color: #00c6ff;
+    font-weight: 500;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+  }
+
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #0099cc, #0d1b2a);
+    padding: 80px 5%;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .cta-section p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 36px;
+  }
+
+  .btn-dark {
+    background: var(--white);
+    color: var(--navy);
+    padding: 15px 40px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: var(--radius);
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-dark:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* CONTACT */
+  .contact {
+    padding: 100px 5%;
+    background: var(--white);
+  }
+
+  .contact-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .contact-info p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .contact-detail {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .contact-detail-icon {
+    width: 36px; height: 36px;
+    background: rgba(201,168,76,0.1);
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: var(--radius);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--cream);
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 36px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+  /* FOOTER */
+  /* WHATSAPP */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(37,211,102,0.4);
+    z-index: 999;
+    transition: all 0.3s;
+    font-size: 28px;
+  }
+
+  .whatsapp-btn:hover {
+    background: #1ebd59;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(37,211,102,0.5);
+  }
+
+  @media (max-width: 600px) {
+    .whatsapp-btn {
+      bottom: 16px;
+      right: 16px;
+      width: 52px;
+      height: 52px;
+      font-size: 24px;
+    }
+  }
+
+  /* FOOTER */
+    background: linear-gradient(135deg, #0d1b2a, #1a1a4e);
+    padding: 40px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .step:not(:last-child)::after { display: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 120 120" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+      <circle cx="60" cy="60" r="55" fill="none" stroke="#00c6ff" stroke-width="2"/>
+      <circle cx="60" cy="60" r="48" fill="none" stroke="#00c6ff" stroke-width="1" opacity="0.3"/>
+      <path d="M 35 52 Q 40 45 50 42 Q 60 40 68 45 L 75 52" fill="none" stroke="#00c6ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="72" y="48" width="18" height="20" rx="3" fill="none" stroke="#00c6ff" stroke-width="3"/>
+      <circle cx="32" cy="48" r="2.5" fill="#00c6ff"/>
+      <circle cx="92" cy="72" r="2.5" fill="#00c6ff"/>
+      <circle cx="45" cy="85" r="2.5" fill="#00c6ff"/>
+    </svg>
+    Fix<span>It</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <p class="hero-eyebrow">Tobago's Trusted Tech Specialists</p>
+      <h1>When your tech breaks,<br><em>we fix it.</em></h1>
+      <p class="hero-desc">From AI-powered phones to next-gen laptops, Fix It delivers fast, reliable repair and digital services — backed by expertise in modern technology you can count on.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn-ghost">View Services</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Logo visualization -->
+      <svg width="320" height="320" viewBox="0 0 120 120" style="filter: drop-shadow(0 20px 40px rgba(0,198,255,0.1));">
+        <circle cx="60" cy="60" r="55" fill="none" stroke="#00c6ff" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#00c6ff" stroke-width="1" opacity="0.3"/>
+        <circle cx="60" cy="60" r="40" fill="none" stroke="#00c6ff" stroke-width="0.5" opacity="0.15"/>
+        <g transform="translate(60, 60)">
+          <path d="M -25 -8 Q -20 -15 -10 -18 Q 0 -20 8 -15 L 15 -8" fill="none" stroke="#00c6ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="12" y="-12" width="18" height="20" rx="3" fill="none" stroke="#00c6ff" stroke-width="3"/>
+          <circle cx="-28" cy="-12" r="2.5" fill="#00c6ff"/>
+          <circle cx="32" cy="12" r="2.5" fill="#00c6ff"/>
+          <circle cx="-15" cy="25" r="2.5" fill="#00c6ff"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><span class="stat-num">500+</span><span class="stat-label">Devices Repaired</span></div>
+    <div><span class="stat-num">48hr</span><span class="stat-label">Avg. Turnaround</span></div>
+    <div><span class="stat-num">100%</span><span class="stat-label">Satisfaction Rate</span></div>
+    <div><span class="stat-num">5★</span><span class="stat-label">Customer Rating</span></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title">Four services. One trusted team.</h2>
+    <p class="section-sub">From broken screens to brand new websites — Fix It handles everything so you don't have to juggle multiple vendors.</p>
+  </div>
+  <div class="services-grid" style="grid-template-columns: repeat(2,1fr); max-width:1200px; margin: 0 auto;">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <h3 class="service-title">Computer Repair</h3>
+      <p class="service-desc">Slow, crashed, or broken — we diagnose and fix desktop and laptop issues, including AI-powered systems and modern devices, quickly and affordably.</p>
+      <ul class="service-list">
+        <li>AI-enabled device support</li>
+        <li>Virus & malware removal</li>
+        <li>Hardware replacement</li>
+        <li>OS reinstallation</li>
+        <li>Data recovery</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+        </svg>
+      </div>
+      <h3 class="service-title">Website Maintenance</h3>
+      <p class="service-desc">Keep your online presence fast, secure, and up to date — including AI features, modern tools, and latest tech, without lifting a finger.</p>
+      <ul class="service-list">
+        <li>AI feature integration & support</li>
+        <li>Security updates & backups</li>
+        <li>Content updates & optimization</li>
+        <li>Speed & performance tuning</li>
+        <li>Bug fixes & support</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>
+        </svg>
+      </div>
+      <h3 class="service-title">Phone Repair</h3>
+      <p class="service-desc">Cracked screen, dead battery, or broken features — we repair all smartphones including AI-powered devices, most repairs done same day.</p>
+      <ul class="service-list">
+        <li>AI smartphone support</li>
+        <li>Screen replacement</li>
+        <li>Battery replacement</li>
+        <li>Charging port repair</li>
+        <li>Water damage recovery</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <h3 class="service-title">Website Design</h3>
+      <p class="service-desc">We build modern, AI-ready websites tailored to your business — from smart landing pages to full business sites with cutting-edge features.</p>
+      <ul class="service-list">
+        <li>AI-powered site features</li>
+        <li>Custom design & branding</li>
+        <li>Mobile-first responsive design</li>
+        <li>E-commerce & online stores</li>
+        <li>Fast delivery & ongoing support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-header" style="margin-bottom: 60px;">
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title">Simple. Transparent. Fast.</h2>
+    <p class="section-sub">No surprises, no hidden fees. Just honest repairs done right.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <p class="step-title">Bring it in</p>
+      <p class="step-desc">Drop off your device or contact us to describe your issue.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <p class="step-title">Free diagnosis</p>
+      <p class="step-desc">We assess the problem and give you a clear, honest quote.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <p class="step-title">We fix it</p>
+      <p class="step-desc">Our technicians get to work — most repairs within 24–48 hrs.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <p class="step-title">Pick it up</p>
+      <p class="step-desc">Collect your device, fully tested and good as new.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+  <div class="section-header">
+    <p class="section-eyebrow">Customer Reviews</p>
+    <h2 class="section-title">Trusted by people all across Tobago</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"My laptop was completely dead. Fix It had it running perfectly within a day. Professional, affordable, and honest — exactly what I needed."</p>
+      <p class="testimonial-author">Marcus D.</p>
+      <p class="testimonial-role">Chaguanas</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"They take care of our company website monthly. Since we started with Fix It, we haven't had a single downtime issue. Highly recommended."</p>
+      <p class="testimonial-author">Priya R.</p>
+      <p class="testimonial-role">San Fernando</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Dropped my phone and shattered the screen. Brought it in and had it fixed same afternoon. Great price, great service. Won't go anywhere else."</p>
+      <p class="testimonial-author">Kevin T.</p>
+      <p class="testimonial-role">Port of Spain</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-header">
+    <p class="section-eyebrow">Transparent Pricing</p>
+    <h2 class="section-title">Honest rates. No surprises.</h2>
+    <p class="section-sub">Competitive prices based on the Trinidad market — you always know what you're paying before we start.</p>
+  </div>
+  <div class="pricing-grid">
+
+    <!-- Phone Repair -->
+    <div class="pricing-card">
+      <div class="pricing-card-header">
+        <span class="pricing-icon">📱</span>
+        <h3 class="pricing-title">Phone Repair</h3>
+      </div>
+      <ul class="pricing-list">
+        <li><span>Screen replacement</span><span class="price-tag">TT$300–500 <em>~$45–74 USD</em></span></li>
+        <li><span>Battery replacement</span><span class="price-tag">TT$150–250 <em>~$22–37 USD</em></span></li>
+        <li><span>Charging port repair</span><span class="price-tag">TT$150–200 <em>~$22–30 USD</em></span></li>
+        <li><span>Water damage recovery</span><span class="price-tag">TT$200–400 <em>~$30–59 USD</em></span></li>
+        <li><span>AI smartphone support</span><span class="price-tag">TT$250–350 <em>~$37–52 USD</em></span></li>
+      </ul>
+      <p class="pricing-note">★ Free diagnosis on all repairs</p>
+    </div>
+
+    <!-- Computer Repair -->
+    <div class="pricing-card">
+      <div class="pricing-card-header">
+        <span class="pricing-icon">💻</span>
+        <h3 class="pricing-title">Computer Repair</h3>
+      </div>
+      <ul class="pricing-list">
+        <li><span>Virus & malware removal</span><span class="price-tag">TT$200–350 <em>~$30–52 USD</em></span></li>
+        <li><span>OS reinstallation</span><span class="price-tag">TT$250–400 <em>~$37–59 USD</em></span></li>
+        <li><span>Hardware replacement</span><span class="price-tag">TT$300–600 <em>~$44–89 USD</em></span></li>
+        <li><span>AI device configuration</span><span class="price-tag">TT$350–500 <em>~$52–74 USD</em></span></li>
+        <li><span>Data recovery</span><span class="price-tag">TT$400–800 <em>~$59–118 USD</em></span></li>
+      </ul>
+      <p class="pricing-note">★ Free diagnosis on all repairs</p>
+    </div>
+
+    <!-- Website Design -->
+    <div class="pricing-card pricing-card-featured">
+      <div class="pricing-featured-badge">Most Popular</div>
+      <div class="pricing-card-header">
+        <span class="pricing-icon">🌐</span>
+        <h3 class="pricing-title">Website Design</h3>
+      </div>
+      <ul class="pricing-list">
+        <li><span>Landing page (1 page)</span><span class="price-tag">TT$1,900–2,800 <em>~$280–413 USD</em></span></li>
+        <li><span>Business site (5–6 pages)</span><span class="price-tag">TT$3,500–5,000 <em>~$516–737 USD</em></span></li>
+        <li><span>AI-powered site add-on</span><span class="price-tag">TT$1,500–2,500 <em>~$221–368 USD</em></span></li>
+        <li><span>E-commerce store</span><span class="price-tag">TT$8,000–15,000 <em>~$1,180+ USD</em></span></li>
+        <li><span>Monthly maintenance</span><span class="price-tag">TT$300–600/mo <em>~$44–89 USD</em></span></li>
+      </ul>
+      <p class="pricing-note">★ Free consultation — AI-ready websites ready in 1–2 weeks</p>
+    </div>
+
+  </div>
+  <p style="text-align:center; font-size:13px; color: var(--muted); margin-top: 32px;">All prices are estimates. Final quote provided after free diagnosis or consultation. Parts costs may vary.</p>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <h2>Ready to get your tech sorted?</h2>
+  <p>Fast turnaround. Fair pricing. No drama.</p>
+  <a href="#contact" class="btn-dark">Book a Repair Today</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <p class="section-eyebrow" style="margin-bottom: 12px;">Get in Touch</p>
+      <h3>Let's fix it together.</h3>
+      <p>Fill out the form and we'll get back to you within a few hours. Or just walk in — we're always happy to help.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <span>Tobago, Trinidad & Tobago</span>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <span>+1 (868) 745-1561</span>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">✉️</div>
+        <span>fixit1868@gmail.com</span>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">💬</div>
+        <span><a href="https://wa.me/18687451561" style="color: inherit; text-decoration: none;">WhatsApp: +1 (868) 745-1561</a></span>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🕐</div>
+        <span>Mon – Sat: 8am – 5pm</span>
+      </div>
+    </div>
+    <div id="fs-success" style="display:none; background: rgba(0,198,255,0.1); border: 1px solid #00c6ff; border-radius: 8px; padding: 20px; text-align:center;">
+      <p style="font-size:16px; font-weight:500; color: #0d1b2a;">✓ Message sent!</p>
+      <p style="font-size:13px; color: var(--muted); margin-top:6px;">We'll get back to you within a few hours.</p>
+    </div>
+    <form class="contact-form" id="fixit-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name</label>
+          <input type="text" name="first_name" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Phone number</label>
+        <input type="tel" name="phone" placeholder="+1 (868) 745-1561" required>
+      </div>
+      <div class="form-group">
+        <label>Service needed</label>
+        <select name="service" required>
+          <option value="" disabled selected>Select a service</option>
+          <option>Computer Repair</option>
+          <option>Website Maintenance</option>
+          <option>Website Design</option>
+          <option>Phone Repair</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Describe your issue</label>
+        <textarea name="message" placeholder="Tell us what's happening with your device or website..."></textarea>
+      </div>
+      <p id="fs-error" style="display:none; font-size:13px; color:#e74c3c; margin:0;">Something went wrong. Please try again or email us directly.</p>
+      <button type="submit" class="form-submit" id="fs-btn">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="28" height="28" viewBox="0 0 120 120" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+      <circle cx="60" cy="60" r="55" fill="none" stroke="#00c6ff" stroke-width="2"/>
+      <path d="M 35 52 Q 40 45 50 42 Q 60 40 68 45 L 75 52" fill="none" stroke="#00c6ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="72" y="48" width="16" height="18" rx="2" fill="none" stroke="#00c6ff" stroke-width="2.5"/>
+      <circle cx="32" cy="48" r="2" fill="#00c6ff"/>
+      <circle cx="92" cy="72" r="2" fill="#00c6ff"/>
+    </svg>
+    Fix<span>It</span>
+  </div>
+  <p>© 2026 Fix It. All rights reserved. Tobago, Trinidad & Tobago.</p>
+</footer>
+
+<script>
+const form = document.getElementById('fixit-form');
+const btn  = document.getElementById('fs-btn');
+const successBox = document.getElementById('fs-success');
+const errorMsg   = document.getElementById('fs-error');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  errorMsg.style.display = 'none';
+
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('https://formspree.io/f/mojzpwrz', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+    } else {
+      const json = await res.json();
+      errorMsg.textContent = json.errors ? json.errors.map(e => e.message).join(', ') : 'Something went wrong. Please try again.';
+      errorMsg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Send Message →';
+    }
+  } catch (err) {
+    errorMsg.textContent = 'Network error. Please check your connection and try again.';
+    errorMsg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send Message →';
+  }
+});
+</script>
+
+<!-- SERVICE WORKER REGISTRATION -->
+<script>
+  // Register service worker for PWA functionality
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then((reg) => {
+      console.log('Service Worker registered:', reg);
+    }).catch((err) => {
+      console.log('Service Worker registration failed:', err);
+    });
+  }
+
+  // Handle PWA install prompt
+  let deferredPrompt;
+  
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // Show install button (you can customize where this appears)
+    const installPrompt = document.createElement('div');
+    installPrompt.id = 'install-prompt';
+    installPrompt.style.cssText = `
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      background: #00c6ff;
+      color: #0d1b2a;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 998;
+      box-shadow: 0 4px 12px rgba(0,198,255,0.3);
+      cursor: pointer;
+      display: none;
+    `;
+    installPrompt.innerHTML = '📱 Install Fix It App';
+    document.body.appendChild(installPrompt);
+    
+    installPrompt.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to the install prompt: ${outcome}`);
+        deferredPrompt = null;
+        installPrompt.style.display = 'none';
+      }
+    });
+    
+    // Show install prompt after 3 seconds
+    setTimeout(() => {
+      installPrompt.style.display = 'block';
+    }, 3000);
+  });
+
+  window.addEventListener('appinstalled', () => {
+    console.log('Fix It app was installed');
+  });
+</script>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/18687451561" class="whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+  💬
+</a>
+
+</body>
+</html>
